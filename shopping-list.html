@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+        li {
+            margin-bottom: 10px;
+        }
+
+        li button {
+            font-size: 8px;
+            margin-left: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+        <label for="item">Enter a new item:</label>
+        <input type="text" name="item" id="item">
+        <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+        // Get the reference to the first <ul> element in the document and store it in the 'list' variable
+        const list = document.querySelector('ul');
+
+        // Get the reference to the first <input> element in the document and store it in the 'input' variable
+        const input = document.querySelector('input');
+
+        // Get the reference to the first <button> element in the document and store it in the 'button' variable
+        const button = document.querySelector('button');
+
+        // Add a 'click' event listener to the 'button'
+        button.addEventListener('click', () => {
+            // Inside the click event callback function, get the value entered in the 'input' element and store it in the 'myItem' variable
+            const myItem = input.value;
+
+            // Clear the value of the 'input' element, making it empty
+            input.value = '';
+
+            // Create a new <li> element and store it in the 'listItem' variable
+            const listItem = document.createElement('li');
+
+            // Create a new <span> element and store it in the 'listText' variable
+            const listText = document.createElement('span');
+
+            // Create a new <button> element and store it in the 'listBtn' variable
+            const listBtn = document.createElement('button');
+
+            // Append the 'listText' element to the 'listItem' element
+            listItem.appendChild(listText);
+
+            // Set the text content of the 'listText' element to the value of 'myItem', displaying the entered text in the list
+            listText.textContent = myItem;
+
+            // Append the 'listBtn' element to the 'listItem' element
+            listItem.appendChild(listBtn);
+
+            // Set the text content of the 'listBtn' element to 'Delete', displaying the word 'Delete' on the button
+            listBtn.textContent = 'Delete';
+
+            // Append the 'listItem' element to the 'list', adding the new item to the list
+            list.appendChild(listItem);
+
+            // Add a 'click' event listener to the 'listBtn'
+            listBtn.addEventListener('click', () => {
+                // Inside the click event callback function for the 'listBtn', remove the 'listItem' (the entire <li> element) from the 'list'
+                list.removeChild(listItem);
+            });
+
+            // Move the focus back to the 'input' element after adding a new item to the list, allowing the user to quickly enter another item
+            input.focus();
+        });
+
+
+    </script>
+</body>
+
+</html>
